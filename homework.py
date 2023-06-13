@@ -69,11 +69,9 @@ class Running(Training):
         CAL_COF: int = 18
         COF_SHIFT: float = 1.79
         TIME_M: int = 60
-        calories: float = (CAL_COF *
-                           Training.get_mean_speed(self) +
-                           COF_SHIFT) * self.weight \
-                            / self.M_IN_KM \
-                            * (self.duration * TIME_M)
+        speed = Training.get_mean_speed(self)
+        calories: float = (CAL_COF * speed + COF_SHIFT) * self.weight \
+            / self.M_IN_KM * (self.duration * TIME_M)
         return calories
 
 
@@ -89,16 +87,15 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        COF_COL_2: float = 0.035
-        COF_2: float = 0.029
+        COF_2: float = 0.035
+        COF_3: float = 0.029
         KM_H_IN_M_C: float = 0.278
         HEIGHT_M: int = 100
         Time_m: int = 60
         speed: float = self.get_mean_speed() * KM_H_IN_M_C
-        calories: float = ((COF_COL_2 * self.weight)
+        calories: float = ((COF_2 * self.weight)
                            + (speed ** 2 / (self.height / HEIGHT_M))
-                           * COF_2 * self.weight) * self.duration \
-                           * Time_m
+                           * COF_3 * self.weight) * self.duration * Time_m
         return calories
 
 
