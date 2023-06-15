@@ -345,7 +345,7 @@ def test_SportsWalking():
 ])
 def test_SportsWalking_get_spent_calories(input_data, expected):
     sports_walking = homework.SportsWalking(*input_data)
-    result = round(sports_walking.get_spent_calories(), 3)
+    result = round(sports_walking.get_spent_calories, 3)
     assert type(result) == float, (
         'Переопределите метод `get_spent_calories` в классе `SportsWalking`.'
     )
